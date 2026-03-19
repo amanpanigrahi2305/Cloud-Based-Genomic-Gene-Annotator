@@ -1,0 +1,58 @@
+<!--
+annotations.html - Display a list of user annotation jobs with links to details for each job
+Copyright (C) 2025-2026 Aman Panigrahi <amanpanigrahi2305@gmail.com>
+University of Chicago
+-->
+
+{% extends "base.html" %} {% block title %}Annotations{% endblock %} {% block
+body %} {% include "header.html" %}
+
+<div class="container">
+  <div class="page-header">
+    <h1>My Annotations</h1>
+  </div>
+
+  <div class="row text-right">
+    <a href="{{ url_for('annotate') }}" title="Request New Annotation">
+      <button
+        type="button"
+        class="btn btn-link"
+        aria-label="Request New Annotation"
+      >
+        <i class="fa fa-plus fa-lg"></i> Request New Annotation
+      </button>
+    </a>
+  </div>
+  {% if annotations|length > 0 %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>Request Time</th>
+        <th>VCF File Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in annotations %}
+      <tr>
+        <td>
+          <a href="{{ url_for('annotation_details', id=item.job_id) }}">
+            {{ item.job_id }}
+          </a>
+        </td>
+        <td>{{ item.formatted_submit_time }}</td>
+        <td>{{ item.input_file_name }}</td>
+        <td>{{ item.job_status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="alert alert-info">
+    <p>You have not submitted any annotation jobs.</p>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

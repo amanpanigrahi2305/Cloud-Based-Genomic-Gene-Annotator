@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# -------------------------------------------------------------------------
+# GAS Deployment Script
+# USAGE: Set the variables below to match your AWS S3 bucket and file name.
+# -------------------------------------------------------------------------
+
+# Configuration Variables
+S3_BUCKET="<YOUR_S3_BUCKET_NAME>"
+S3_KEY_PATH="<YOUR_S3_PATH_TO_ZIP>" # e.g., apps/gas.zip
+INSTALL_DIR="/home/ubuntu"
+APP_NAME="gas"
+
+# 1. Navigate to the installation directory
+cd $INSTALL_DIR
+
+# 2. Download the application package from S3
+# Note: Ensure the EC2 instance profile has S3 Read permissions
+aws s3 cp s3://${S3_BUCKET}/${S3_KEY_PATH} .
+
+# 3. Unzip and set permissions
+unzip ${APP_NAME}.zip
+chown -R ubuntu:ubuntu ${APP_NAME}
+
+# 4. Prepare and launch the web server
+cd ${APP_NAME}/web
+
+# Fix potential Windows-style line endings and make script executable
+sed -i 's/\r$//' run_gas.sh
+chmod +x run_gas.sh
+
+# 5. Start the server as the 'ubuntu' user in the background
+sudo -u ubuntu bash -c "nohup ./run_gas.sh > ${INSTALL_DIR}/${APP_NAME}/web/web_server.log 2>&1 &"
+
+echo "Deployment complete. Web server logs: ${INSTALL_DIR}/${APP_NAME}/web/web_server.log"

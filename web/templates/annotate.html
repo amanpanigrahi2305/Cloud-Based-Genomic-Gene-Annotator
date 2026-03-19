@@ -1,0 +1,94 @@
+<!--
+annotate.html - Direct upload to Amazon S3 using signed POST request
+Copyright (C) 2025-2026 Aman Panigrahi <amanpanigrahi2305@gmail.com>
+University of Chicago
+-->
+
+{% extends "base.html" %} {% block title %}Annotate{% endblock %} {% block body
+%} {% include "header.html" %}
+
+<div class="container">
+  <div class="page-header">
+    <h1>Annotate VCF File</h1>
+  </div>
+
+  <div class="form-wrapper">
+    <form
+      role="form"
+      action="{{ s3_post.url }}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      {% for key, value in s3_post.fields.items() %}
+      <input type="hidden" name="{{ key }}" value="{{ value }}" />
+      {% endfor %}
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="upload">Select VCF Input File</label>
+          <div class="input-group col-md-12">
+            <span class="input-group-btn">
+              <span class="btn btn-default btn-file btn-lg"
+                >Browse&hellip; <input type="file" name="file" id="upload-file"
+              /></span>
+            </span>
+            <input
+              type="text"
+              class="form-control col-md-6 input-lg"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-actions">
+        <input
+          class="btn btn-lg btn-primary"
+          type="submit"
+          value="Annotate"
+          id="annotateButton"
+        />
+      </div>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var role = "{{ session['role'] }}";
+      var submitBtn = $("#annotateButton");
+      var fileInput = $("#upload-file");
+
+      submitBtn.prop("disabled", true);
+
+      fileInput.on("change", function () {
+        var file = this.files[0];
+
+        if (!file) {
+          submitBtn.prop("disabled", true);
+          return;
+        }
+
+        if (role === "free_user") {
+          var maxSize = 150 * 1024;
+          if (file.size > maxSize) {
+            alert(
+              "Free users are limited to 150KB files. Please select a smaller file or upgrade to Premium.",
+            );
+
+            $(this).val("");
+            $(this).parents(".input-group").find(":text").val("");
+            submitBtn.prop("disabled", true);
+            return;
+          }
+        }
+        submitBtn.prop("disabled", false);
+      });
+    });
+  </script>
+</div>
+<!-- container -->
+
+{% endblock %}
