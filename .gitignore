@@ -12,3 +12,15 @@ util/notify/notify_config.ini
 *.pem
 *.crt
 *.key
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Logs ---
+*.log
+log/

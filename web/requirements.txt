@@ -1,0 +1,9 @@
+boto3
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-WTF
+globus-sdk
+stripe
+psycopg2-binary
+uWSGI
