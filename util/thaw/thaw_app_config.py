@@ -6,7 +6,7 @@
 # Set app configuration options for thaw utility
 #
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 import os
 

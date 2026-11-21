@@ -10,7 +10,7 @@
 # University of Chicago
 #
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 import sys
 import os

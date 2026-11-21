@@ -9,8 +9,8 @@
 #
 ##
 
-SSL_CERT_PATH=/usr/local/src/ssl/ucmpcs.org.crt
-SSL_KEY_PATH=/usr/local/src/ssl/ucmpcs.org.key
+SSL_CERT_PATH=/usr/local/src/ssl/server.crt
+SSL_KEY_PATH=/usr/local/src/ssl/server.key
 
 cd /home/ubuntu/gas
 

@@ -6,7 +6,7 @@
 # Set GAS annotator configuration options
 #
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 import os
 

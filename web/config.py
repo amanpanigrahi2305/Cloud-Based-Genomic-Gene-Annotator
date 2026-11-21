@@ -11,7 +11,7 @@
 #
 # ************************************************************************
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 import boto3
 import json
@@ -131,12 +131,12 @@ class ProductionConfig(Config):
     SSL_CERT_PATH = (
         os.environ["SSL_CERT_PATH"]
         if ("SSL_CERT_PATH" in os.environ)
-        else "/usr/local/src/ssl/ucmpcs.org.crt"
+        else "/usr/local/src/ssl/server.crt"
     )
     SSL_KEY_PATH = (
         os.environ["SSL_KEY_PATH"]
         if ("SSL_KEY_PATH" in os.environ)
-        else "/usr/local/src/ssl/ucmpcs.org.key"
+        else "/usr/local/src/ssl/server.key"
     )
 
 

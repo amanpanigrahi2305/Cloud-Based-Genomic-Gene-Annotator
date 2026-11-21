@@ -11,7 +11,7 @@
 #
 # ************************************************************************
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 import boto3
 import json

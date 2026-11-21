@@ -11,7 +11,7 @@
 #
 # ************************************************************************
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 from flask import redirect, request, session, url_for
 from functools import wraps

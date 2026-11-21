@@ -6,7 +6,7 @@
 # Application logic for the GAS
 #
 ##
-__author__ = "Aman Panigrahi <amanpanigrahi2305@gmail.com>"
+__author__ = "Aman Panigrahi"
 
 import uuid
 import time

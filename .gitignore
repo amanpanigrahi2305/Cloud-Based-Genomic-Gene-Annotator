@@ -1,0 +1,14 @@
+# --- Local / private files (never publish) ---
+GENOMICS_REPO_FIX.md
+
+# --- Real configuration files ---
+# Copy the matching *.example template to this name and fill in your own values.
+ann/annotator_config.ini
+util/util_config.ini
+util/notify/notify_config.ini
+
+# --- Secrets & credentials ---
+.env
+*.pem
+*.crt
+*.key
